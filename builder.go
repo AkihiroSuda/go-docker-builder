@@ -1,8 +1,11 @@
+// fork from go-dockerclient
+//
 // Copyright 2015 go-dockerclient authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package docker
+//Package builder provides a tar stream for docker/engine-api.(*Client).ImageBuild
+package builder
 
 import (
 	"fmt"
@@ -17,7 +20,8 @@ import (
 	"github.com/docker/docker/pkg/fileutils"
 )
 
-func createTarStream(srcPath, dockerfilePath string) (io.ReadCloser, error) {
+//CreateTarStream creates a tar stream
+func CreateTarStream(srcPath, dockerfilePath string) (io.ReadCloser, error) {
 	excludes, err := parseDockerignore(srcPath)
 	if err != nil {
 		return nil, err
@@ -115,4 +119,3 @@ func parseDockerignore(root string) ([]string, error) {
 
 	return excludes, nil
 }
-
